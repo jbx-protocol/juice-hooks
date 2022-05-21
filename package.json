@@ -1,6 +1,6 @@
 {
   "name": "juice-hooks",
-  "version": "0.0.2-alpha",
+  "version": "0.0.3-alpha",
   "description": "",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -9,7 +9,8 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc"
+    "build": "tsc",
+    "dev": "tsc -w"
   },
   "author": "",
   "license": "ISC",
@@ -18,7 +19,6 @@
   },
   "devDependencies": {
     "@types/react": "^18.0.9",
-    "react": "^18.1.0",
     "typescript": "^4.6.4"
   },
   "peerDependencies": {
