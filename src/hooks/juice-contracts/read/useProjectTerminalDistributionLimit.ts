@@ -1,21 +1,25 @@
 import { useContext, useEffect } from "react";
 
 import { getJBController } from "juice-sdk";
+import { BigNumber } from "@ethersproject/bignumber";
 import { JuiceContext } from "../../../contexts/JuiceContext";
 import useHookState from "../../useHookState";
 
-type FundingCycleData = {};
-type FundingCycleMetadata = {};
+export const ETH_TOKEN_ADDRESS = "0x000000000000000000000000000000000000eeee";
 
 type DataType = {
-  fundingCycleData: FundingCycleData;
-  fundingCycleMetadata: FundingCycleMetadata;
+  distributionLimit: BigNumber;
+  distributionLimitCurrency: BigNumber;
 };
 
-export default function useProjectCurrentFundingCycle({
+export default function useProjectTerminalDistributionLimit({
   projectId,
+  configuration,
+  terminal,
 }: {
-  projectId: ProjectId;
+  projectId: number;
+  configuration: string;
+  terminal: string;
 }): ContractReadHookResponse<DataType> {
   const { provider } = useContext(JuiceContext);
   const { loading, data, error, actions } = useHookState<DataType>();
@@ -24,12 +28,17 @@ export default function useProjectCurrentFundingCycle({
     actions.setLoading(true);
 
     getJBController(provider)
-      .currentFundingCycleOf(projectId)
+      .distributionLimitOf(
+        projectId,
+        configuration,
+        terminal,
+        ETH_TOKEN_ADDRESS
+      )
       .then((data) => {
         actions.setLoading(false);
         actions.setData({
-          fundingCycleData: data?.[0],
-          fundingCycleMetadata: data?.[1],
+          distributionLimit: data?.[0],
+          distributionLimitCurrency: data?.[1],
         });
       })
       .catch((e) => {
