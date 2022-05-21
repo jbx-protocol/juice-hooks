@@ -1,6 +1,6 @@
 {
   "name": "juice-hooks",
-  "version": "0.0.4-alpha",
+  "version": "0.0.5-alpha",
   "description": "",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -16,10 +16,12 @@
   "license": "ISC",
   "devDependencies": {
     "@types/react": "^18.0.9",
-    "juice-sdk": "^0.0.8-alpha",
     "typescript": "^4.6.4"
   },
   "peerDependencies": {
     "react": ">=18.1.0"
+  },
+  "dependencies": {
+    "juice-sdk": "^0.0.8-alpha"
   }
 }
