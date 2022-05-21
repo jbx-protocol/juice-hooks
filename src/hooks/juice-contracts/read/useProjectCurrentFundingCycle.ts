@@ -3,9 +3,7 @@ import { useContext, useEffect } from "react";
 import { getJBController } from "juice-sdk";
 import { JuiceContext } from "../../../contexts/JuiceContext";
 import useHookState from "../../useHookState";
-
-type FundingCycleData = {};
-type FundingCycleMetadata = {};
+import { FundingCycleData, FundingCycleMetadata } from "types/fundingCycle";
 
 type DataType = {
   fundingCycleData: FundingCycleData;
