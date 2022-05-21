@@ -5,8 +5,8 @@ import {
   getJBSingleTokenPaymentTerminalStore,
 } from "juice-sdk";
 import { BigNumber } from "@ethersproject/bignumber";
-import { JuiceContext } from "../../../contexts/JuiceContext";
-import useHookState from "../../useHookState";
+import { JuiceContext } from "contexts/JuiceContext";
+import useHookState from "hooks/useHookState";
 
 type DataType = BigNumber;
 

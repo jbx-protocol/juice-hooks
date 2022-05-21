@@ -2,7 +2,7 @@ import { useContext, useEffect } from "react";
 
 import { getJBOperatorStore } from "juice-sdk";
 import useProjectOwner from "./useProjectOwner";
-import { JuiceContext } from "../../../contexts/JuiceContext";
+import { JuiceContext } from "contexts/JuiceContext";
 import useHookState from "../../../hooks/useHookState";
 
 export enum V2OperatorPermission {

@@ -2,8 +2,8 @@ import { useContext, useEffect } from "react";
 
 import { getJBController } from "juice-sdk";
 import { BigNumber } from "@ethersproject/bignumber";
-import { JuiceContext } from "../../../contexts/JuiceContext";
-import useHookState from "../../useHookState";
+import { JuiceContext } from "contexts/JuiceContext";
+import useHookState from "hooks/useHookState";
 
 export const ETH_TOKEN_ADDRESS = "0x000000000000000000000000000000000000eeee";
 

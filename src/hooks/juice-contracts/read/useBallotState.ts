@@ -1,8 +1,8 @@
 import { useContext, useEffect } from "react";
 
 import { getJBFundingCycleStore } from "juice-sdk";
-import { JuiceContext } from "../../../contexts/JuiceContext";
-import useHookState from "../../useHookState";
+import { JuiceContext } from "contexts/JuiceContext";
+import useHookState from "hooks/useHookState";
 
 export enum BallotState {
   "Active" = 0,

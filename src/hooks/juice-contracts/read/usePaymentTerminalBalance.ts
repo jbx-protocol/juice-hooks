@@ -1,8 +1,8 @@
 import { useContext, useEffect } from "react";
 
 import { getJBSingleTokenPaymentTerminalStore } from "juice-sdk";
-import { JuiceContext } from "../../../contexts/JuiceContext";
-import useHookState from "../../useHookState";
+import { JuiceContext } from "contexts/JuiceContext";
+import useHookState from "hooks/useHookState";
 import { BigNumber } from "@ethersproject/bignumber";
 
 type DataType = BigNumber;
