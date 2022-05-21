@@ -18,9 +18,8 @@ npm install juice-hooks
 
 ## Usage
 
-// MyComponent.tsx˝
-
 ```tsx
+// MyComponent.tsx
 import { useProjectOwner, useProjectMetadataContent } from "juice-hooks";
 
 export default function MyComponent() {
