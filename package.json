@@ -1,6 +1,6 @@
 {
   "name": "juice-hooks",
-  "version": "0.0.5-alpha",
+  "version": "0.0.6-alpha",
   "description": "",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "prebuild": "rm -Rf lib/",
     "build": "tsc",
     "dev": "tsc -w"
   },
@@ -22,6 +23,6 @@
     "react": ">=18.1.0"
   },
   "dependencies": {
-    "juice-sdk": "^0.0.8-alpha"
+    "juice-sdk": "^0.0.9-alpha"
   }
 }
