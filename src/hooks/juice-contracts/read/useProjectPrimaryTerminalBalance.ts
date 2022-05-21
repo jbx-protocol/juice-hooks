@@ -4,20 +4,22 @@ import {
   getJBDirectory,
   getJBSingleTokenPaymentTerminalStore,
 } from "juice-sdk";
-import { JuiceContext } from "../contexts/JuiceContext";
+import { BigNumber } from "@ethersproject/bignumber";
+import { JuiceContext } from "../../../contexts/JuiceContext";
+import useHookState from "../../useHookState";
 
-export default function useTerminalBalance({
+type DataType = BigNumber;
+
+export default function useProjectPrimaryTerminalBalance({
   projectId,
 }: {
-  projectId: string;
-}) {
+  projectId: ProjectId;
+}): ContractReadHookResponse<DataType> {
   const { provider } = useContext(JuiceContext);
 
-  const [loading, setLoading] = React.useState<boolean>(false);
-  const [data, setData] = React.useState<any>();
-  const [error, setError] = React.useState<any>();
+  const { loading, data, error, actions } = useHookState<DataType>();
 
-  async function getBalance(projectId: string) {
+  async function getBalance(projectId: ProjectId) {
     const terminals = await getJBDirectory(provider).terminalsOf(projectId);
     const primaryTerminal = terminals[0];
 
@@ -29,15 +31,15 @@ export default function useTerminalBalance({
   }
 
   React.useEffect(() => {
-    setLoading(true);
+    actions.setLoading(true);
 
     getBalance(projectId)
       .then((balance) => {
-        setLoading(false);
-        setData(balance);
+        actions.setLoading(false);
+        actions.setData(balance);
       })
       .catch((e) => {
-        setError(e);
+        actions.setError(e);
       });
   }, [projectId]);
 
