@@ -17,7 +17,7 @@ export default function useProjectTerminalDistributionLimit({
   configuration,
   terminal,
 }: {
-  projectId: number;
+  projectId: ProjectId;
   configuration: string;
   terminal: string;
 }): ContractReadHookResponse<DataType> {
