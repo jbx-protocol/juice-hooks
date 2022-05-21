@@ -28,7 +28,7 @@ export enum V2OperatorPermission {
 
 type DataType = boolean;
 
-export function useHasPermission({
+export default function useHasPermission({
   address,
   projectOwnerAddress,
   projectId,
