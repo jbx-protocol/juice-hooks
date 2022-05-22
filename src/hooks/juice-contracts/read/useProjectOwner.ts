@@ -1,8 +1,8 @@
 import { useContext, useEffect } from "react";
 
 import { getJBProjects } from "juice-sdk";
-import { JuiceContext } from "contexts/JuiceContext";
-import useHookState from "hooks/useHookState";
+import { JuiceContext } from "../../../contexts/JuiceContext";
+import useHookState from "../../useHookState";
 
 type DataType = string;
 

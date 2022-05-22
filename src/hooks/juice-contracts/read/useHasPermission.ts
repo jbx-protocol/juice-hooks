@@ -2,8 +2,8 @@ import { useContext, useEffect } from "react";
 
 import { getJBOperatorStore } from "juice-sdk";
 import useProjectOwner from "./useProjectOwner";
-import { JuiceContext } from "contexts/JuiceContext";
-import useHookState from "../../../hooks/useHookState";
+import { JuiceContext } from "../../../contexts/JuiceContext";
+import useHookState from "../../useHookState";
 
 export enum V2OperatorPermission {
   "RECONFIGURE" = 1,
@@ -30,12 +30,10 @@ type DataType = boolean;
 
 export default function useHasPermission({
   address,
-  projectOwnerAddress,
   projectId,
   permission,
 }: {
   address: string;
-  projectOwnerAddress: string;
   projectId: ProjectId;
   permission: V2OperatorPermission | V2OperatorPermission[];
 }): ContractReadHookResponse<DataType> {
@@ -47,10 +45,16 @@ export default function useHasPermission({
   useEffect(() => {
     actions.setLoading(true);
 
+    if (owner === address) {
+      actions.setLoading(false);
+      actions.setData(true);
+      return;
+    }
+
     getJBOperatorStore(provider)
       .hasPermissions(
         address,
-        projectOwnerAddress,
+        owner,
         projectId,
         Array.isArray(permission) ? permission : [permission]
       )

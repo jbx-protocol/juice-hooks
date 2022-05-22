@@ -3,8 +3,8 @@ import { BigNumber } from "@ethersproject/bignumber";
 import { useContext, useEffect } from "react";
 
 import { getJBSplitsStore } from "juice-sdk";
-import useHookState from "hooks/useHookState";
-import { JuiceContext } from "contexts/JuiceContext";
+import useHookState from "../../useHookState";
+import { JuiceContext } from "../../../contexts/JuiceContext";
 import { Split, SplitGroup } from "types/splits";
 
 type SplitResult = {

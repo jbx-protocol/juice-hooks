@@ -1,8 +1,8 @@
 import { useContext, useEffect } from "react";
 
 import { getJBController } from "juice-sdk";
-import { JuiceContext } from "contexts/JuiceContext";
-import useHookState from "hooks/useHookState";
+import { JuiceContext } from "../../../contexts/JuiceContext";
+import useHookState from "../../useHookState";
 import { FundingCycleData, FundingCycleMetadata } from "types/fundingCycle";
 
 type DataType = {
