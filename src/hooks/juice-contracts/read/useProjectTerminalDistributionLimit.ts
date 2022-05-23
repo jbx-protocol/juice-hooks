@@ -1,11 +1,12 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect } from 'react';
+import { getJBController } from 'juice-sdk';
+import { BigNumber } from '@ethersproject/bignumber';
+import { ContractReadHookResponse, ProjectId } from 'types';
 
-import { getJBController } from "juice-sdk";
-import { BigNumber } from "@ethersproject/bignumber";
-import { JuiceContext } from "../../../contexts/JuiceContext";
-import useHookState from "../../useHookState";
+import { JuiceContext } from '../../../contexts/JuiceContext';
+import useHookState from '../../useHookState';
 
-export const ETH_TOKEN_ADDRESS = "0x000000000000000000000000000000000000eeee";
+export const ETH_TOKEN_ADDRESS = '0x000000000000000000000000000000000000eeee';
 
 type DataType = {
   distributionLimit: BigNumber;
@@ -15,11 +16,11 @@ type DataType = {
 export default function useProjectTerminalDistributionLimit({
   projectId,
   configuration,
-  terminal,
+  terminalAddress,
 }: {
   projectId: ProjectId;
   configuration: string;
-  terminal: string;
+  terminalAddress: string;
 }): ContractReadHookResponse<DataType> {
   const { provider } = useContext(JuiceContext);
   const { loading, data, error, actions } = useHookState<DataType>();
@@ -31,20 +32,20 @@ export default function useProjectTerminalDistributionLimit({
       .distributionLimitOf(
         projectId,
         configuration,
-        terminal,
-        ETH_TOKEN_ADDRESS
+        terminalAddress,
+        ETH_TOKEN_ADDRESS,
       )
-      .then((data) => {
+      .then(data => {
         actions.setLoading(false);
         actions.setData({
           distributionLimit: data?.[0],
           distributionLimitCurrency: data?.[1],
         });
       })
-      .catch((e) => {
+      .catch(e => {
         actions.setError(e);
       });
-  }, [projectId]);
+  }, [projectId, configuration, terminalAddress, actions, provider]);
 
   return { loading, data, error };
 }

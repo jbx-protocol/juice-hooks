@@ -1,9 +1,10 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect } from 'react';
+import { getJBController } from 'juice-sdk';
+import { FundingCycleData, FundingCycleMetadata } from 'types/fundingCycle';
+import { ContractReadHookResponse, ProjectId } from 'types';
 
-import { getJBController } from "juice-sdk";
-import { JuiceContext } from "../../../contexts/JuiceContext";
-import useHookState from "../../useHookState";
-import { FundingCycleData, FundingCycleMetadata } from "types/fundingCycle";
+import { JuiceContext } from '../../../contexts/JuiceContext';
+import useHookState from '../../useHookState';
 
 type DataType = {
   fundingCycleData: FundingCycleData;
@@ -23,17 +24,17 @@ export default function useProjectCurrentFundingCycle({
 
     getJBController(provider)
       .currentFundingCycleOf(projectId)
-      .then((data) => {
+      .then(data => {
         actions.setLoading(false);
         actions.setData({
           fundingCycleData: data?.[0],
           fundingCycleMetadata: data?.[1],
         });
       })
-      .catch((e) => {
+      .catch(e => {
         actions.setError(e);
       });
-  }, [projectId]);
+  }, [projectId, provider, actions]);
 
   return { loading, data, error };
 }

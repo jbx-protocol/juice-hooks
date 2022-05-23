@@ -1,7 +1,7 @@
-type ContractReadHookResponse<T> = {
+export type ContractReadHookResponse<T> = {
   data: T | undefined;
   loading: boolean;
   error: Error | undefined;
 };
 
-type ProjectId = number;
+export type ProjectId = number;

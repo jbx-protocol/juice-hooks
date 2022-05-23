@@ -1,21 +1,22 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect } from 'react';
+import { getJBSingleTokenPaymentTerminalStore } from 'juice-sdk';
+import { BigNumber } from '@ethersproject/bignumber';
+import { ContractReadHookResponse, ProjectId } from 'types';
 
-import { getJBSingleTokenPaymentTerminalStore } from "juice-sdk";
-import { BigNumber } from "@ethersproject/bignumber";
-import { JuiceContext } from "../../../contexts/JuiceContext";
-import useHookState from "../../useHookState";
-import useWalletTotalTokenBalance from "./useWalletTotalTokenBalance";
+import { JuiceContext } from '../../../contexts/JuiceContext';
+import useHookState from '../../useHookState';
+import useWalletTotalTokenBalance from './useWalletTotalTokenBalance';
 
 type DataType = BigNumber;
 
 export default function useTerminalCurrentReclaimableOverflow({
   projectId,
   walletAddress,
-  terminal,
+  terminalAddress,
 }: {
   projectId: ProjectId;
   walletAddress: string;
-  terminal: string;
+  terminalAddress: string;
 }): ContractReadHookResponse<DataType> {
   const { provider } = useContext(JuiceContext);
   const { loading, data, error, actions } = useHookState<DataType>();
@@ -29,20 +30,28 @@ export default function useTerminalCurrentReclaimableOverflow({
     actions.setLoading(true);
 
     getJBSingleTokenPaymentTerminalStore(provider)
-      ["currentReclaimableOverflowOf(address,uint256,uint256,bool)"](
-        terminal,
+      ['currentReclaimableOverflowOf(address,uint256,uint256,bool)'](
+        terminalAddress,
         projectId,
         totalBalance,
-        false // _useTotalOverflow (just using 1 terminal for now)
+        false, // _useTotalOverflow (just using 1 terminal for now)
       )
-      .then((overflow) => {
+      .then(overflow => {
         actions.setLoading(false);
         actions.setData(overflow);
       })
-      .catch((e) => {
+      .catch(e => {
         actions.setError(e);
       });
-  }, [projectId]);
+  }, [
+    projectId,
+    walletAddress,
+    terminalAddress,
+    actions,
+    provider,
+    totalBalance,
+    totalBalanceLoading,
+  ]);
 
   return { loading, data, error };
 }

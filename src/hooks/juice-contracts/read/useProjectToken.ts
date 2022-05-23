@@ -1,8 +1,9 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect } from 'react';
+import { getJBTokenStore } from 'juice-sdk';
+import { ContractReadHookResponse, ProjectId } from 'types';
 
-import { getJBTokenStore } from "juice-sdk";
-import { JuiceContext } from "../../../contexts/JuiceContext";
-import useHookState from "../../useHookState";
+import { JuiceContext } from '../../../contexts/JuiceContext';
+import useHookState from '../../useHookState';
 
 type DataType = string;
 
@@ -19,14 +20,14 @@ export default function useProjectToken({
 
     getJBTokenStore(provider)
       .tokenOf(projectId)
-      .then((token) => {
+      .then(token => {
         actions.setLoading(false);
         actions.setData(token);
       })
-      .catch((e) => {
+      .catch(e => {
         actions.setError(e);
       });
-  }, [projectId]);
+  }, [projectId, actions, provider]);
 
   return { loading, data, error };
 }

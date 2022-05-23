@@ -1,9 +1,10 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect } from 'react';
+import { getJBSingleTokenPaymentTerminalStore } from 'juice-sdk';
+import { BigNumber } from '@ethersproject/bignumber';
+import { ContractReadHookResponse, ProjectId } from 'types';
 
-import { getJBSingleTokenPaymentTerminalStore } from "juice-sdk";
-import { JuiceContext } from "../../../contexts/JuiceContext";
-import useHookState from "../../useHookState";
-import { BigNumber } from "@ethersproject/bignumber";
+import { JuiceContext } from '../../../contexts/JuiceContext';
+import useHookState from '../../useHookState';
 
 type DataType = BigNumber;
 
@@ -22,14 +23,14 @@ export default function usePaymentTerminalBalance({
 
     getJBSingleTokenPaymentTerminalStore(provider)
       .balanceOf(terminalAddress, projectId)
-      .then((balance) => {
+      .then(balance => {
         actions.setLoading(false);
         actions.setData(balance);
       })
-      .catch((e) => {
+      .catch(e => {
         actions.setError(e);
       });
-  }, [projectId]);
+  }, [projectId, actions, terminalAddress, provider]);
 
   return { loading, data, error };
 }

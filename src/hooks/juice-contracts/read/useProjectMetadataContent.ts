@@ -1,8 +1,9 @@
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from 'react';
+import { getJBProjects } from 'juice-sdk';
+import { ContractReadHookResponse, ProjectId } from 'types';
 
-import { getJBProjects } from "juice-sdk";
-import { JuiceContext } from "../../../contexts/JuiceContext";
-import useHookState from "../../useHookState";
+import { JuiceContext } from '../../../contexts/JuiceContext';
+import useHookState from '../../useHookState';
 
 type DataType = string;
 
@@ -21,14 +22,14 @@ export default function useProjectMetadataContent({
 
     getJBProjects(provider)
       .metadataContentOf(projectId, domain)
-      .then((cid) => {
+      .then(cid => {
         actions.setLoading(false);
         actions.setData(cid);
       })
-      .catch((e) => {
+      .catch(e => {
         actions.setError(e);
       });
-  }, [projectId, domain]);
+  }, [projectId, domain, actions, provider]);
 
   return { loading, data, error };
 }

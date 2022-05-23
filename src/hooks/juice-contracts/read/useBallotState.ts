@@ -1,13 +1,14 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect } from 'react';
+import { getJBFundingCycleStore } from 'juice-sdk';
+import { ContractReadHookResponse, ProjectId } from 'types';
 
-import { getJBFundingCycleStore } from "juice-sdk";
-import { JuiceContext } from "../../../contexts/JuiceContext";
-import useHookState from "../../useHookState";
+import { JuiceContext } from '../../../contexts/JuiceContext';
+import useHookState from '../../useHookState';
 
 export enum BallotState {
-  "Active" = 0,
-  "Approved" = 1,
-  "Failed" = 2,
+  'Active' = 0,
+  'Approved' = 1,
+  'Failed' = 2,
 }
 
 type DataType = BallotState;
@@ -25,14 +26,14 @@ export default function useBallotState({
 
     getJBFundingCycleStore(provider)
       .currentBallotStateOf(projectId)
-      .then((owner) => {
+      .then(owner => {
         actions.setLoading(false);
         actions.setData(owner);
       })
-      .catch((e) => {
+      .catch(e => {
         actions.setError(e);
       });
-  }, [projectId]);
+  }, [projectId, actions, provider]);
 
   return { loading, data, error };
 }

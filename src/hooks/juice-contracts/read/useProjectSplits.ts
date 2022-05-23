@@ -1,11 +1,11 @@
-import { BigNumber } from "@ethersproject/bignumber";
+import { BigNumber } from '@ethersproject/bignumber';
+import { useContext, useEffect } from 'react';
+import { getJBSplitsStore } from 'juice-sdk';
+import { Split, SplitGroup } from 'types/splits';
+import { ContractReadHookResponse, ProjectId } from 'types';
 
-import { useContext, useEffect } from "react";
-
-import { getJBSplitsStore } from "juice-sdk";
-import useHookState from "../../useHookState";
-import { JuiceContext } from "../../../contexts/JuiceContext";
-import { Split, SplitGroup } from "types/splits";
+import useHookState from '../../useHookState';
+import { JuiceContext } from '../../../contexts/JuiceContext';
 
 type SplitResult = {
   percent: BigNumber;
@@ -50,14 +50,14 @@ export default function useProjectSplits({
 
     getJBSplitsStore(provider)
       .splitsOf(projectId, domain, splitGroup)
-      .then((splits) => {
+      .then(splits => {
         actions.setLoading(false);
         actions.setData(formatSplitResult(splits));
       })
-      .catch((e) => {
+      .catch(e => {
         actions.setError(e);
       });
-  }, [projectId, splitGroup, domain]);
+  }, [projectId, splitGroup, domain, actions, provider]);
 
   return { loading, data, error };
 }

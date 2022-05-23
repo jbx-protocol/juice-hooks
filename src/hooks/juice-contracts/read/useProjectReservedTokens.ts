@@ -1,8 +1,10 @@
-import { useContext, useEffect } from "react";
-import { BigNumber } from "@ethersproject/bignumber";
-import { getJBController } from "juice-sdk";
-import { JuiceContext } from "../../../contexts/JuiceContext";
-import useHookState from "../../useHookState";
+import { useContext, useEffect } from 'react';
+import { BigNumber } from '@ethersproject/bignumber';
+import { getJBController } from 'juice-sdk';
+import { ContractReadHookResponse, ProjectId } from 'types';
+
+import { JuiceContext } from '../../../contexts/JuiceContext';
+import useHookState from '../../useHookState';
 
 type DataType = BigNumber;
 
@@ -21,14 +23,14 @@ export default function useProjectReservedTokenBalance({
 
     getJBController(provider)
       .reservedTokenBalanceOf(projectId, reservedRate)
-      .then((balance) => {
+      .then(balance => {
         actions.setLoading(false);
         actions.setData(balance);
       })
-      .catch((e) => {
+      .catch(e => {
         actions.setError(e);
       });
-  }, [projectId]);
+  }, [projectId, actions, provider, reservedRate]);
 
   return { loading, data, error };
 }

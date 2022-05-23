@@ -1,7 +1,7 @@
-import { PropsWithChildren } from "react";
-import { JsonRpcProvider } from "@ethersproject/providers";
+import { PropsWithChildren } from 'react';
+import { JsonRpcProvider } from '@ethersproject/providers';
 
-import { JuiceContext } from "../contexts/JuiceContext";
+import { JuiceContext } from '../contexts/JuiceContext';
 
 export default function JuiceProvider({
   provider,

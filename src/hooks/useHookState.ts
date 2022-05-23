@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState } from 'react';
+import { ContractReadHookResponse } from 'types';
 
 type HookStateActions<T> = {
   setLoading: React.Dispatch<React.SetStateAction<boolean>>;
@@ -7,7 +8,7 @@ type HookStateActions<T> = {
 };
 
 export default function useHookState<T>(
-  defaultData?: T
+  defaultData?: T,
 ): ContractReadHookResponse<T> & {
   actions: HookStateActions<T>;
 } {

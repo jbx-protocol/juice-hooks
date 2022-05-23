@@ -1,8 +1,9 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect } from 'react';
+import { getJBProjects } from 'juice-sdk';
+import { ContractReadHookResponse, ProjectId } from 'types';
 
-import { getJBProjects } from "juice-sdk";
-import { JuiceContext } from "../../../contexts/JuiceContext";
-import useHookState from "../../useHookState";
+import { JuiceContext } from '../../../contexts/JuiceContext';
+import useHookState from '../../useHookState';
 
 type DataType = string;
 
@@ -19,14 +20,14 @@ export default function useProjectOwner({
 
     getJBProjects(provider)
       .ownerOf(projectId)
-      .then((owner) => {
+      .then(owner => {
         actions.setLoading(false);
         actions.setData(owner);
       })
-      .catch((e) => {
+      .catch(e => {
         actions.setError(e);
       });
-  }, [projectId]);
+  }, [projectId, actions, provider]);
 
   return { loading, data, error };
 }
