@@ -1,3 +1,5 @@
+import { ProjectId } from "types";
+
 export type Split = {
   beneficiary: string | undefined; // address
   percent: number;

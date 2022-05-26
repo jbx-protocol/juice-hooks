@@ -4,7 +4,7 @@ import { JsonRpcProvider } from "@ethersproject/providers";
 import { JuiceProvider } from "juice-hooks";
 
 const RPC_HOST =
-  "https://mainnet.infura.io/v3/YOUR_INFURA_ID";
+  "https://mainnet.infura.io/v3/c2838024e339438fbe8a31d6754efe8a";
 
 function App() {
   const provider = new JsonRpcProvider(RPC_HOST);
