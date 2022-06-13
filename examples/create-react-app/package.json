@@ -7,7 +7,7 @@
     "@testing-library/react": "^13.2.0",
     "@testing-library/user-event": "^13.5.0",
     "ethers": "^5.6.6",
-    "juice-hooks": "^1.0.0-alpha",
+    "juice-hooks": "^2.0.0-alpha",
     "react": "^18.1.0",
     "react-dom": "^18.1.0",
     "react-scripts": "5.0.1",
