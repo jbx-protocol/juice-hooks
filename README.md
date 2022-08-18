@@ -1,3 +1,7 @@
+# Moved to https://github.com/jbx-protocol/juice-sdk/tree/main/packages/react
+
+----
+
 # juice-hooks
 
 🧃 A React Hooks library for the [Juicebox V2 protocol](https://github.com/jbx-protocol/juice-contracts-v2).
